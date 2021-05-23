@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  a(href='/') Top News
+  br
+  .row
+    form(action='/everything', method="get")
+      .column
+        input#q(type='text' name='q' placeholder='Search keyword like blockchain')
+      br
+      .column
+        input#from(type='text' name='from' placeholder='Set from date like: 2021-05-21')
+      .column
+        input#to(type='text' name='to' placeholder='Set to date like: 2021-05-21')
+      br
+      .column
+        select#cars(name='sortBy')
+          option(value='relevancy') relevancy
+          option(value='popularity') popularity
+          option(value='publishedAt') publishedAt
+      .column
+        input(type='submit' value='Submit')
+
+  each val in data.articles
+    .row
+      .column(style='background-color:#aaa;')
+        h2 #{val.title}
+        img(src='#{val.urlToImage}' alt='Girl in a jacket' width='250')
+        p #{val.description}
+        p Source:#{val.source.name}
+        a(href='#{val.url}' target='_blank') Detail

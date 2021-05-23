@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  a(href='/everything') Everything
+  each val in data.articles
+    .row
+      .column(style='background-color:#aaa;')
+        h2 #{val.title}
+        img(src='#{val.urlToImage}' alt='Girl in a jacket' width='250')
+        p #{val.description}
+        p Source:#{val.source.name}
